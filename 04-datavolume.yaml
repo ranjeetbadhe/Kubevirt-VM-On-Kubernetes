@@ -1,0 +1,15 @@
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: DataVolume
+metadata:
+  name: rocky-datavolume
+spec:
+  source:
+    http:
+      url: http://192.168.0.30/images/rocky.qcow2
+  pvc:
+    accessModes:
+      - ReadWriteMany
+    resources:
+      requests:
+        storage: 20Gi
+    storageClassName: nfs-sc

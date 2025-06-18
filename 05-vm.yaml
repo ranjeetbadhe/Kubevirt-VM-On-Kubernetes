@@ -1,0 +1,27 @@
+apiVersion: kubevirt.io/v1
+kind: VirtualMachine
+metadata:
+  name: rocky-vm
+spec:
+  running: true
+  template:
+    metadata:
+      labels:
+        kubevirt.io/domain: rocky-vm
+    spec:
+      domain:
+        cpu:
+          cores: 2
+        devices:
+          disks:
+          - name: rootdisk
+            disk:
+              bus: virtio
+            bootOrder: 1
+        resources:
+          requests:
+            memory: 2Gi
+      volumes:
+      - name: rootdisk
+        dataVolume:
+          name: rocky-datavolume
